@@ -1,0 +1,11 @@
+FROM debian:jessie
+RUN echo "deb http://deb.debian.org/debian jessie contrib" >> /etc/apt/sources.list
+RUN echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
+
+RUN apt-get update \
+    && apt-get install -y python3-pip \
+    && pip3 install grip pytest numpy \
+    && apt-get clean
+
+WORKDIR /root
+CMD /bin/bash
